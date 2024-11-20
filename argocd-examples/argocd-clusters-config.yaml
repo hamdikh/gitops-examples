@@ -1,0 +1,43 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  labels:
+    argocd.argoproj.io/secret-type: cluster
+  name: argocd-cluster-1-config
+  namespace: argocd-system
+type: Opaque
+stringData:
+  name: cluster-1
+  server: "https://kubernetes.default.svc"
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  labels:
+    argocd.argoproj.io/secret-type: cluster
+  name: argocd-cluster-2-config
+  namespace: argocd-system
+type: Opaque
+stringData:
+  name: cluster-2
+  server: "https://kubernetes.default.svc"
+---
+# apiVersion: v1
+# kind: Secret
+# metadata:
+#   name: mycluster-secret
+#   labels:
+#     argocd.argoproj.io/secret-type: cluster
+# type: Opaque
+# stringData:
+#   name: mycluster.example.com
+#   server: https://mycluster.example.com
+#   config: |
+#     {
+#       "bearerToken": "<authentication token>",
+#       "tlsClientConfig": {
+#         "insecure": false,
+#         "caData": "<base64 encoded certificate>"
+#       }
+#     }

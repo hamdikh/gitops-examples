@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app-of-apps
+  namespace: argocd-system
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: root
+  source:
+    repoURL: https://github.com/hamdikh/gitops-examples.git
+    path: argocd-examples/
+    targetRevision: HEAD
+    directory:
+      recurse: true
+  destination:
+    name: cluster-1
+    namespace: argocd-system
+  syncPolicy:
+    automated:
+      selfHeal: true

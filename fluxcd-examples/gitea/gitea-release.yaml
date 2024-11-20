@@ -1,0 +1,37 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: gitea
+  namespace: gitea-with-flux-system
+spec:
+  chart:
+    spec:
+      chart: gitea
+      version: 10.6.0
+      sourceRef:
+        kind: HelmRepository
+        name: gitea-repo
+        namespace: flux-system
+  interval: 5m
+  # values:
+  #   gitea:
+  #     admin:
+  #       username: gitea-admin
+  #       password: gitea-password
+  #     config:
+  #       APP_NAME: "Gitea: Git with a cup of tea"
+  #       RUN_MODE: prod
+  #       database:
+  #         DB_TYPE: sqlite3
+  #         PATH: /data/gitea/gitea.db
+  #   service:
+  #     http:
+  #       type: ClusterIP
+  #       port: 3000
+  #     ssh:
+  #       type: ClusterIP
+  #       port: 22
+  #   persistence:
+  #     enabled: true
+  #     size: 10Gi
+  #     storageClass: standard

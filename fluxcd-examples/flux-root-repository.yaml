@@ -1,0 +1,11 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: root-git-repo
+  namespace: flux-system
+spec:
+  interval: 1m0s
+  url: https://github.com/hamdikh/gitops-examples.git
+  ref:
+    branch: main
+---

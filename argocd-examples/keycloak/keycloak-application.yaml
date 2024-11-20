@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: keycloak
+  namespace: argocd-system
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: keycloak-system
+    name: cluster-2
+  project: keycloak
+  source:
+    chart: keycloak
+    repoURL: registry-1.docker.io/bitnamicharts
+    targetRevision: 24.2.1
+    helm:
+      releaseName: keycloak-release
+  syncPolicy:
+    automated: 
+      selfHeal: true

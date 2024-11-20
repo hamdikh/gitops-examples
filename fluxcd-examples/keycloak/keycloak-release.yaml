@@ -1,0 +1,23 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: keycloak
+  namespace: keycloak-with-flux-system
+spec:
+  interval: 5m
+  releaseName: keycloak
+  chart:
+    spec:
+      chart: keycloak
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: keycloak-repo
+        namespace: flux-system
+      version: 24.2.1
+  # values:
+  #   auth:
+  #     adminUser: admin
+  #     adminPassword: adminpassword
+  #   proxyAddressForwarding: true
+  #   replicaCount: 1

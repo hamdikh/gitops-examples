@@ -1,0 +1,20 @@
+# apiVersion: source.toolkit.fluxcd.io/v1beta2
+# kind: OCIRepository
+# metadata:
+#   name: keyclaok-repo
+#   namespace: flux-system
+# spec:
+#   url: oci://registry-1.docker.io/bitnamicharts
+#   interval: 1h
+
+---
+# Keycloak.yml
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: keycloak-repo
+  namespace: flux-system
+spec:
+  interval: 1m 
+  url: oci://registry-1.docker.io/bitnamicharts/
+  type: oci

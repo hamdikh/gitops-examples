@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gitea
+  namespace: argocd-system
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: gitea-system
+    name: cluster-1
+  project: gitea
+  source:
+    chart: gitea
+    repoURL: https://dl.gitea.com/charts/
+    targetRevision: 10.6.0
+    helm:
+      releaseName: gitea-release
+  syncPolicy:
+    automated: 
+      selfHeal: true
